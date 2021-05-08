@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kafkaConsumer", "kafkaConsumer\kafkaConsumer.csproj", "{2709EF2C-5736-4A46-98B8-249E0B689530}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DA3E852E-5289-4006-B30B-2BF70CA85EA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2709EF2C-5736-4A46-98B8-249E0B689530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2709EF2C-5736-4A46-98B8-249E0B689530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2709EF2C-5736-4A46-98B8-249E0B689530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2709EF2C-5736-4A46-98B8-249E0B689530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA3E852E-5289-4006-B30B-2BF70CA85EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA3E852E-5289-4006-B30B-2BF70CA85EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA3E852E-5289-4006-B30B-2BF70CA85EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA3E852E-5289-4006-B30B-2BF70CA85EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {767428C6-8F59-4D31-A6F3-5303B8BEEBC1}
+	EndGlobalSection
+EndGlobal
