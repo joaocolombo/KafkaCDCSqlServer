@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using kafkaConsumer.Models;
 
 class Program
 {
     public static async Task Main(string[] args)
     {
 
-        var taskSkuLojista = new ConsumerTopico("origem.dbo.SkuLojista");
-        var taskLojista = new ConsumerTopico("origem.dbo.Lojista");
-        var taskSku = new ConsumerTopico("origem.dbo.Produto");
-        var taskProduto = new ConsumerTopico("origem.dbo.Sku");
+        var taskSkuLojista = new ConsumerTopico<SkuLojistaModel>("origem.dbo.SkuLojista");
+        var taskLojista = new ConsumerTopico<LojistaModel>("origem.dbo.Lojista");
+        var taskProduto= new ConsumerTopico<ProdutoModel>("origem.dbo.Produto");
+        var taskSku = new ConsumerTopico<SkuModel>("origem.dbo.Sku");
 
         await Task.WhenAll(new[] {taskProduto.Run(), taskLojista.Run(), taskSku.Run(), taskSkuLojista.Run()});
     }
 
 
-    public class ConsumerTopico
+    public class ConsumerTopico<T>
     {
         public ConsumerTopico(string topico)
         {
@@ -54,13 +56,25 @@ class Program
                     {
                         await Task.Delay(10, cts.Token);
                         var cr = c.Consume(cts.Token);
-                        Console.WriteLine($"------------------------{Topico}-----------------------------");
+                        if (cr.Message?.Value == null)
+                            continue;
 
-                        Console.WriteLine($"Consumed message '{cr.Message.Value}' at: '{cr.TopicPartitionOffset}'.");
+                        Console.WriteLine($"------------------------{Topico}-----------------------------");
+    
+                        var mensagem = JsonSerializer.Deserialize<BaseModel<T>>(cr.Message.Value);
+
+                        var before = mensagem.payload.before == null ? "Null" : mensagem.payload.before.ToString();
+                        var after= mensagem.payload.after == null ? "Null" : mensagem.payload.after.ToString();
+                        Console.WriteLine(
+                            $"Executado: {mensagem.payload.op} | {before} => {after}");
                     }
                     catch (ConsumeException e)
                     {
                         Console.WriteLine($"Error occured: {e.Error.Reason}");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error occured: {e.Message}");
                     }
                 }
             }

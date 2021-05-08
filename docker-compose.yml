@@ -52,7 +52,6 @@ services:
       - connect
       - sqlserver
       - zookeeper
-    
 
   kafkaconsumer:
     image: ${DOCKER_REGISTRY-}kafkaconsumer
