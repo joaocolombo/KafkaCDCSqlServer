@@ -1,6 +1,9 @@
 # pw SQL Cwi123456@
+
 # docker-compose up --force-recreate  -d
-#Apos container up rodar comando ou fazer chamada no postman
+
+# Apos container up rodar comando ou fazer chamada no postman
+
 curl --location --request POST 'http://0.0.0.0:8083/connectors' \
 --header 'Content-Type: application/json' \
 --data-raw '{
