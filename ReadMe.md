@@ -21,3 +21,5 @@ curl --location --request POST 'http://0.0.0.0:8083/connectors' \
     "database.history.kafka.topic": "dbhistory.origem" 
   }
 }'
+
+## Para ver o topicos acesse http://localhost:8080
